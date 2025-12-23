@@ -40,7 +40,7 @@ export default function HomePage() {
   return (
     <div>
       {/* Hero with fading background images */}
-      <section className="relative overflow-hidden border-b">
+      <section className="relative overflow-hidden border-b border-slate-800/50">
         {/* background slideshow */}
         <div className="absolute inset-0 -z-10">
           {heroImages.map((src, i) => (
@@ -51,7 +51,7 @@ export default function HomePage() {
               }`}
             >
               <Image src={src} alt="" fill priority className="object-cover" />
-              {/* black tint instead of white */}
+              {/* overlay tint – stays darkish in both themes */}
               <div className="absolute inset-0 bg-black/55" />
             </div>
           ))}
@@ -63,10 +63,10 @@ export default function HomePage() {
             <p className="text-xs uppercase tracking-[0.25em] text-slate-200 mb-3">
               Heritage · Education · Charity
             </p>
-            <h1 className="text-3xl md:text-4xl lg:text-5xl font-semibold leading-tight mb-4 text-white">
+            <h1 className="text-3xl md:text-4xl lg:text-5xl font-semibold leading-tight mb-4 text-slate-100">
               Preserving heritage, enabling education, serving with compassion.
             </h1>
-            <p className="text-slate-100 mb-6 max-w-xl">
+            <p className="mb-6 max-w-xl text-slate-100">
               Amurtha Bharathi foundation works to preserve India&apos;s rich
               heritage and culture, foster education as empowerment, and extend
               charitable support to build a more equitable society.
@@ -87,16 +87,17 @@ export default function HomePage() {
             </div>
           </div>
 
+          {/* quote card */}
           <div className="relative">
             <div className="pointer-events-none absolute -inset-6 rounded-[16px] bg-amber-400/40 blur-3xl" />
 
-            <div className="relative flex items-center gap-6 rounded-3xl bg-black shadow-lg px-6 py-5 md:px-8 md:py-6 border border-black">
+            <div className="relative flex items-center gap-6 rounded-3xl card px-6 py-5 md:px-8 md:py-6">
               {/* text first (left) */}
               <div className="flex-1 text-left">
-                <p className="text-xs md:text-sm leading-relaxed mb-3 text-slate-200">
-                  Culture unites us; it is not through constitutions or politics but
-                  through culture that we are truly one. The culture of our Rishis is
-                  alive even today. It is never dead.
+                <p className="text-xs md:text-sm leading-relaxed mb-3">
+                  Culture unites us; it is not through constitutions or politics
+                  but through culture that we are truly one. The culture of our
+                  Rishis is alive even today. It is never dead.
                 </p>
                 <p className="text-xs md:text-sm font-semibold text-amber-500">
                   — Sadguru Sivananda Murthy
@@ -116,23 +117,21 @@ export default function HomePage() {
               </div>
             </div>
           </div>
-
-
         </div>
       </section>
 
-      {/* Mission*/}
-      <section className="bg-black">
-        <div className="mx-auto max-w-6xl px-4 py-14 md:py-16 border-b border-black">
-          <h2 className="text-2xl md:text-3xl font-semibold mb-3 text-white">
+      {/* Mission */}
+      <section className="section-muted">
+        <div className="mx-auto max-w-6xl px-4 py-14 md:py-16 border-b border-slate-800/40">
+          <h2 className="text-2xl md:text-3xl font-semibold mb-3">
             Our Mission
           </h2>
-          <p className="text-slate-400 mb-3">
+          <p className="mb-3 text-muted-foreground">
             At Amurtha Bharathi, the mission is to nurture and preserve
             India&apos;s rich heritage and culture while championing accessible
             education and meaningful charitable initiatives.
           </p>
-          <p className="text-slate-400">
+          <p className="text-muted-foreground">
             By emphasizing the importance of mother tongue, supporting
             underprivileged students, and encouraging service to humanity, the
             foundation strives to reduce social inequalities and build
@@ -142,7 +141,7 @@ export default function HomePage() {
       </section>
 
       {/* Key Focus Areas with static background image */}
-      <section className="relative border-t">
+      <section className="relative border-t border-slate-800/40">
         <div className="absolute inset-0 -z-10">
           <Image
             src="/focus-bg.jpg"
@@ -153,7 +152,7 @@ export default function HomePage() {
           <div className="absolute inset-0 bg-slate-900/65" />
         </div>
 
-        <div className="max-w-6xl mx-auto px-4 py-14 md:py-16">
+        <div className="max-w-6xl mx-auto px-4 pt-14 md:pt-16 pb-16">
           <div className="flex items-center justify-between mb-6">
             <h2 className="text-2xl md:text-3xl font-semibold text-white">
               Key Focus Areas
@@ -170,12 +169,14 @@ export default function HomePage() {
             {focusAreas.map((area) => (
               <div
                 key={area.title}
-                className="rounded-2xl border border-white/20 bg-white/10 backdrop-blur p-4 hover:bg-white/15 transition"
+                className="card rounded-2xl border bg-white/10 backdrop-blur p-4 hover:bg-white/15 transition"
               >
-                <h3 className="text-sm font-semibold mb-2 text-white">
+                <h3 className="text-sm font-semibold mb-2">
                   {area.title}
                 </h3>
-                <p className="text-xs text-slate-100">{area.desc}</p>
+                <p className="text-xs text-muted-foreground">
+                  {area.desc}
+                </p>
               </div>
             ))}
           </div>
