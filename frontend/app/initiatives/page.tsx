@@ -1,4 +1,6 @@
 // app/initiatives/page.tsx
+import Image from "next/image";
+
 const initiatives = [
   {
     category: "Heritage & Culture",
@@ -32,30 +34,49 @@ const initiatives = [
 
 export default function InitiativesPage() {
   return (
-    <div className="mx-auto max-w-6xl px-4 py-12 md:py-16 text-slate-900 dark:text-slate-100">
-      <h1 className="text-3xl font-semibold mb-4">Our Activities</h1>
-      <p className="mb-8 text-slate-600 dark:text-slate-300">
-        Amurtha Bharathi undertakes initiatives that weave together heritage,
-        education, charity, and literature to build a more compassionate and
-        aware society.
-      </p>
-
-      <div className="grid md:grid-cols-2 gap-6">
-        {initiatives.map((block) => (
-          <div
-            key={block.category}
-            className="rounded-2xl border border-slate-200 dark:border-slate-700
-                       bg-white dark:bg-slate-900/70 p-5 shadow-sm"
-          >
-            <h2 className="text-lg font-semibold mb-3">{block.category}</h2>
-            <ul className="list-disc list-inside text-slate-600 dark:text-slate-300 text-sm space-y-2">
-              {block.items.map((item) => (
-                <li key={item}>{item}</li>
-              ))}
-            </ul>
-          </div>
-        ))}
+    <section className="relative">
+      {/* background image + overlay */}
+      <div className="absolute inset-0 -z-10">
+        <Image
+          src="/initiatives-bg.jpg"
+          alt=""
+          fill
+          className="object-cover"
+        />
+        <div className="absolute inset-0 bg-slate-900/80" />
       </div>
-    </div>
+
+      <div className="mx-auto max-w-6xl px-4 py-12 md:py-16">
+        <h1 className="text-3xl font-semibold mb-4 text-white">
+          Our Activities
+        </h1>
+        <p className="mb-8 text-slate-100">
+          Amurtha Bharathi undertakes initiatives that weave together heritage,
+          education, charity, and literature to build a more compassionate and
+          aware society.
+        </p>
+
+        <div className="grid md:grid-cols-2 gap-6 pb-12">
+          {initiatives.map((block) => (
+            <div
+              key={block.category}
+              className="
+                card
+                rounded-2xl border p-5 shadow-lg backdrop-blur-sm
+              "
+            >
+              <h2 className="text-lg font-semibold mb-3">
+                {block.category}
+              </h2>
+              <ul className="list-disc list-inside text-sm space-y-2">
+                {block.items.map((item) => (
+                  <li key={item}>{item}</li>
+                ))}
+              </ul>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
   );
 }

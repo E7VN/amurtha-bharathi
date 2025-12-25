@@ -1,8 +1,10 @@
 // app/layout.tsx
 import "./globals.css";
 import Link from "next/link";
-import { ThemeProvider } from "@/components/ThemeProvider"; // new file you create
+import Image from "next/image";
+import { ThemeProvider } from "@/components/ThemeProvider";
 import { ThemeToggle } from "@/components/ThemeToggle";
+import { BrandLogo } from "@/components/BrandLogo";
 
 export const metadata = {
   title: "Amurtha Bharathi Foundation",
@@ -41,12 +43,8 @@ export default function RootLayout({
         <ThemeProvider>
           <header className="site-header backdrop-blur">
             <div className="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between">
-              <Link
-                href="/"
-                className="text-lg font-semibold tracking-wide text-brand-blue"
-              >
-                Amurtha Bharathi
-              </Link>
+              {/* use logo instead of text */}
+              <BrandLogo />
 
               <div className="flex items-center gap-6">
                 <nav className="flex items-center gap-6 text-sm font-medium">
