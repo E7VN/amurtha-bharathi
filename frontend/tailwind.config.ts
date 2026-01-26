@@ -11,6 +11,7 @@ const config: Config = {
         brand: {
           blue: "#3781C2",
           blueDark: "#1F3249",
+          gold: "#d4af37",
         },
       },
     },

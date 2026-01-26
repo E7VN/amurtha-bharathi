@@ -2,16 +2,14 @@
 import Image from "next/image";
 
 const leaders = [
-  { name: "K. Venu Gopal", role: "Managing Director, Heritage & Culture" },
-  { name: "Prakash Reddy", role: "Managing Director, Education" },
-  { name: "Amudala Murali", role: "In-charge, Literature" },
-  { name: "Stephen Prabhu Kumar", role: "In-charge, Charity" },
-  { name: "Hari Krishna", role: "PRO" },
+  { name: "L Prakash Reddy", role: "Founder & Director", image: "/prakash-reddy.jpg" },
+  { name: "Amudala Murali Avadhani", role: "PRO", image: "/murali-avadhani.jpg" },
+  { name: "Lokesh Reddy", role: "Operations Director", image: "/lokesh-reddy.jpg" }
 ];
 
 export default function LeadershipPage() {
   return (
-    <section className="relative">
+    <section className="relative min-h-[80vh]">
       {/* background image + overlay (similar to initiatives) */}
       <div className="absolute inset-0 -z-10">
         <Image
@@ -31,20 +29,30 @@ export default function LeadershipPage() {
           foundation&apos;s vision.
         </p>
 
-        <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-6 pb-14">
-          {leaders.map((leader) => (
-            <div
-              key={leader.name}
-              className="card rounded-2xl border p-4 shadow-lg backdrop-blur-sm"
-            >
-              <div className="h-16 w-16 md:h-16 md:w-16 rounded-full bg-amber-200 mb-3" />
-              <h2 className="text-sm font-semibold">{leader.name}</h2>
-              <p className="text-xs text-muted-foreground mt-1">
-                {leader.role}
-              </p>
+      <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-6 pb-14">
+        {leaders.map((leader) => (
+          <div
+            key={leader.name}
+            className="card rounded-2xl border p-4 shadow-lg backdrop-blur-sm"
+          >
+            {/* Circular image wrapper */}
+            <div className="relative w-40 h-40 mb-4 rounded-full overflow-hidden">
+              <Image
+                src={leader.image}
+                alt={leader.name}
+                fill
+                className="object-cover"
+              />
             </div>
-          ))}
-        </div>
+
+            <h2 className="text-sm font-semibold">{leader.name}</h2>
+            <p className="text-xs text-muted-foreground mt-1">
+              {leader.role}
+            </p>
+          </div>
+        ))}
+      </div>
+
       </div>
     </section>
   );

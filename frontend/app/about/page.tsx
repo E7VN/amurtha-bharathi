@@ -1,70 +1,20 @@
-// app/about/page.tsx
-import Image from "next/image";
-
-export default function AboutPage() {
+export default function DonatePage() {
   return (
-    <section className="relative">
-      {/* background image + dark overlay */}
-      <div className="absolute inset-0 -z-10">
-        <Image
-          src="/about-bg.jpg"   // add an appropriate image in /public
-          alt=""
-          fill
-          className="object-cover"
-        />
-        <div className="absolute inset-0 bg-slate-900/80" />
-      </div>
-
-      <div className="mx-auto max-w-6xl px-4 py-12 md:py-16">
-        <h1 className="text-3xl font-semibold mb-4 text-white">
-          About Amurtha Bharathi
-        </h1>
-
-        <p className="text-slate-100 mb-3">
-          Amurtha Bharathi foundation is envisioned for individual integrity and
-          holistic development through heritage, culture, education, and
-          eradication of poverty.
-        </p>
-        <p className="text-slate-100 mb-3">
-          The foundation believes a country is not merely sand and brick, but its
-          people and their way of life. Modern education often focuses on
-          competition and material comfort, while the deeper relationship with
-          self, community, and culture is neglected.
-        </p>
-
-        {/* content blocks in theme-aware cards, using your .card helper */}
-        <div className="mt-8 space-y-6">
-          <div className="card rounded-2xl border p-5 shadow-lg backdrop-blur-sm">
-            <h2 className="text-xl font-semibold mb-3">Heritage &amp; Culture</h2>
-            <p className="text-muted-foreground">
-              India&apos;s richness lies in its heritage and culture, rooted in ancient
-              philosophical traditions that offer timeless guidance to the world.
-              Amurtha Bharathi seeks to preserve these traditions, customs, and
-              values, so future generations can appreciate their beauty and depth.
-            </p>
-          </div>
-
-          <div className="card rounded-2xl border p-5 shadow-lg backdrop-blur-sm">
-            <h2 className="text-xl font-semibold mb-3">Education</h2>
-            <p className="text-muted-foreground">
-              Education is seen as a crucial investment for individuals, communities,
-              and the nation. It equips people with knowledge and skills, supports
-              social progress and economic growth, and empowers them to make informed
-              decisions and overcome inequality.
-            </p>
-          </div>
-
-          <div className="card rounded-2xl border p-5 shadow-lg backdrop-blur-sm">
-            <h2 className="text-xl font-semibold mb-3">Charity &amp; Service</h2>
-            <p className="text-muted-foreground">
-              Charity is viewed as an expression of empathy and social
-              responsibility—addressing immediate needs and upholding human dignity.
-              Service to humanity, especially the poor and suffering, is regarded as a
-              high form of worship and a path to spiritual expression.
-            </p>
-          </div>
+    <div className="min-h-screen bg-cover bg-center bg-no-repeat" 
+         style={{ backgroundImage: "url('https://images.unsplash.com/photo-1557804506-669a67965ba0?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80')" }}>
+      <div className="min-h-screen bg-black/40 backdrop-blur-sm flex items-center justify-center py-8 px-4">
+        <div className="max-w-lg mx-auto text-center bg-white/90 backdrop-blur-xl rounded-2xl shadow-2xl p-8 border border-white/50">
+          <h1 className="text-3xl md:text-4xl font-bold bg-gradient-to-r from-gray-900 to-gray-600 bg-clip-text text-transparent mb-6">
+            Support Our Mission
+          </h1>
+          <p className="text-base md:text-lg text-gray-700 leading-relaxed mb-8">
+            Your generous donations empower our foundation to foster innovation in sustainable technology and community projects. Every contribution supports cybersecurity education, open-source tools, workshops, and research grants that benefit thousands worldwide.
+          </p>
+          <button className="w-full max-w-sm mx-auto bg-gradient-to-r from-purple-600 to-blue-600 text-white py-4 px-6 rounded-xl text-lg font-bold hover:from-purple-700 hover:to-blue-700 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1">
+            Donate Now
+          </button>
         </div>
       </div>
-    </section>
+    </div>
   );
 }
