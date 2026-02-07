@@ -70,7 +70,7 @@ export default function HomePage() {
             <p className="text-xs uppercase tracking-[0.25em] text-slate-200 mb-3">
               Heritage · Education · Charity
             </p>
-            <h1 className="text-3xl md:text-4xl lg:text-5xl font-semibold leading-tight mb-4 text-gold">
+            <h1 className="text-3xl md:text-4xl lg:text-5xl font-semibold leading-tight mb-4 text-slate-100">
               Preserving heritage, enabling education, serving with compassion.
             </h1>
             <p className="mb-6 max-w-xl text-slate-100">
@@ -86,10 +86,10 @@ export default function HomePage() {
                 Our Activities
               </Link>
               <Link
-                href="/donate"
+                href="/about"
                 className="inline-flex items-center rounded-full border border-slate-200/70 px-5 py-2.5 text-sm font-medium text-slate-100 hover:bg-white/10"
               >
-                Make a Donation
+                Our Events
               </Link>
             </div>
           </div>
