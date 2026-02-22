@@ -14,7 +14,7 @@ export const metadata = {
 
 const navLinks = [
   { href: "/", label: "Home" },
-  { href: "/about", label: "Events" },
+  { href: "/events", label: "Events" },
   { href: "/initiatives", label: "Activities" },
   { href: "/leadership", label: "Leadership" },
   { href: "/contact", label: "Contact" },
