@@ -2,6 +2,14 @@ import Image from "next/image";
 import { title } from "process";
 import { getEventsFromSheet } from "@/lib/googleSheets";
 
+type TimelineEvent = {
+  title: string;
+  date: string;
+  description: string;
+  location: string;
+  image: string;
+};
+
 export default async function EventsTimeline() {
   const events = await getEventsFromSheet();
   console.log("EVENTS:", events);
