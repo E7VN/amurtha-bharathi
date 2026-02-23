@@ -7,6 +7,14 @@ export async function getEventsFromSheet() {
   const res = await fetch(url);
   const text = await res.text();
 
+  type TimelineEvent = {
+  title: string;
+  date: string;
+  description: string;
+  location: string;
+  image: string;
+  };
+
   const json = JSON.parse(
     text.substring(47, text.length - 2)
   );
@@ -29,7 +37,7 @@ export async function getEventsFromSheet() {
     return new Date(year, month, day);
   }
 
-  const events = rows.map((row: any) => ({
+  const events: TimelineEvent[] = rows.map((row: any) => ({
     title: row.c?.[0]?.v?.toString().trim() || "",
     date: row.c?.[1]?.v?.toString().trim() || "",
     description: row.c?.[2]?.v?.toString().trim() || "",
@@ -38,7 +46,7 @@ export async function getEventsFromSheet() {
   }));
 
   // Sort: Newest → Oldest
-  events.sort((a, b) => {
+  events.sort((a: TimelineEvent, b: TimelineEvent) => {
     return (
       parseDate(b.date).getTime() -
       parseDate(a.date).getTime()
