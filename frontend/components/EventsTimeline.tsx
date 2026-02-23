@@ -11,7 +11,7 @@ type TimelineEvent = {
 };
 
 export default async function EventsTimeline() {
-  const events = await getEventsFromSheet();
+  const events: TimelineEvent[] = await getEventsFromSheet();
   console.log("EVENTS:", events);
   return (
     <div className="relative max-w-6xl mx-auto">
@@ -33,7 +33,7 @@ export default async function EventsTimeline() {
 
       <div className="space-y-28">
 
-        {events.map((event, index) => {
+        {events.map((event: TimelineEvent, index: number) => {
           const isLeft = index % 2 === 0;
 
           return (
