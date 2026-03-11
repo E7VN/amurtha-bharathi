@@ -1,7 +1,7 @@
 import { Resend } from "resend";
 import { NextResponse } from "next/server";
 
-const resend = new Resend(process.env.re_VHrPvfeS_FaLDzT73mRw5fkgYAq7NmuAJ);
+const resend = new Resend(process.env.re_b6gj4vTT_EbYvfARrKicwFCyEd2aCY26r);
 
 export async function POST(req: Request) {
   const { name, email, message } = await req.json();
@@ -9,7 +9,7 @@ export async function POST(req: Request) {
   try {
     await resend.emails.send({
       from: "Website Contact <onboarding@resend.dev>", // temporary sender
-      to: "prakash@umasfintax.com",
+      to: "voice.amurthabharathi@gmail.com",
       subject: `New message from ${name}`,
       replyTo: email,
       text: `
