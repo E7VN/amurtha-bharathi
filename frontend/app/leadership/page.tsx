@@ -9,13 +9,14 @@ const leaders = [
 
 export default function LeadershipPage() {
   return (
-    <section className="relative min-h-[80vh]">
+    <section className="relative min-h-screen overflow-hidden">
       {/* background image + overlay (similar to initiatives) */}
-      <div className="absolute inset-0 -z-10">
+      <div className="fixed inset-0 -z-20 pointer-events-none">
         <Image
           src="/leadership-bg.jpg"  // put an appropriate image in /public
           alt=""
           fill
+          priority
           className="object-cover"
         />
         <div className="absolute inset-0 bg-slate-900/80" />

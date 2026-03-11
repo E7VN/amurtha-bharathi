@@ -34,13 +34,14 @@ const initiatives = [
 
 export default function InitiativesPage() {
   return (
-    <section className="relative">
+    <section className="relative min-h-screen overflow-hidden">
       {/* background image + overlay */}
-      <div className="absolute inset-0 -z-10">
+      <div className="fixed inset-0 -z-20 pointer-events-none">
         <Image
           src="/initiatives-bg.jpg"
           alt=""
           fill
+          priority
           className="object-cover"
         />
         <div className="absolute inset-0 bg-slate-900/80" />

@@ -7,16 +7,33 @@ import Image from "next/image";
 export default function ContactPage() {
   const [status, setStatus] = useState<"idle" | "sent">("idle");
 
-  function handleSubmit(e: React.FormEvent) {
+  async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
-    // TODO: replace with real API call later
-    setStatus("sent");
+
+    const form = e.target as HTMLFormElement;
+    const formData = new FormData(form);
+
+    const data = {
+      name: formData.get("name"),
+      email: formData.get("email"),
+      message: formData.get("message"),
+    };
+
+    const res = await fetch("/api/contact", {
+      method: "POST",
+      body: JSON.stringify(data),
+    });
+
+    if (res.ok) {
+      setStatus("sent");
+      form.reset();
+    }
   }
 
   return (
-    <section className="relative">
+    <section className="relative min-h-screen overflow-hidden">
       {/* background image + dark overlay, like initiatives/leadership */}
-      <div className="absolute inset-0 -z-10">
+      <div className="fixed inset-0 -z-20 pointer-events-none">
         <Image
           src="/contact-bg.jpg"   // put an appropriate image in /public
           alt=""
@@ -45,6 +62,7 @@ export default function ContactPage() {
             </label>
             <input
               id="name"
+              name="name"
               required
               className="w-full rounded-md border px-3 py-2 text-sm outline-none focus:ring-2 focus:ring-blue-600 focus:border-blue-600"
             />
@@ -57,6 +75,7 @@ export default function ContactPage() {
             <input
               id="email"
               type="email"
+              name="email"
               required
               className="w-full rounded-md border px-3 py-2 text-sm outline-none focus:ring-2 focus:ring-blue-600 focus:border-blue-600"
             />
@@ -68,6 +87,7 @@ export default function ContactPage() {
             </label>
             <textarea
               id="message"
+              name="message"
               rows={4}
               required
               className="w-full rounded-md border px-3 py-2 text-sm outline-none focus:ring-2 focus:ring-blue-600 focus:border-blue-600"

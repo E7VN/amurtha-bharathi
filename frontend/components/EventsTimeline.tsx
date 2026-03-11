@@ -169,10 +169,6 @@ function CardContent({ event }: { event: any }) {
               📍 {event.location}
             </span>
 
-            <button className="text-sm text-brand-blue hover:underline">
-              View Details →
-            </button>
-
           </div>
         </div>
       </div>
