@@ -1,14 +1,16 @@
+import Papa from "papaparse";
+
 export async function getEventsFromSheet() {
   const SHEET_ID = "1WfsWDv3cXFu9dDEKkBaOsrWA9Ofb90wDeqOzivvoe1I";
-  const GID = "0"; // sheet tab id
+  const GID = "0";
 
   const url = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/export?format=csv&gid=${GID}`;
 
   const res = await fetch(url, {
-    next: { revalidate: 60 },
+    next: { revalidate: 60 }, // refresh every 60 seconds
   });
 
-  const text = await res.text();
+  const csv = await res.text();
 
   type TimelineEvent = {
     title: string;
@@ -18,13 +20,19 @@ export async function getEventsFromSheet() {
     image: string;
   };
 
+  const parsed = Papa.parse(csv, {
+    header: true,
+    skipEmptyLines: true,
+  });
+
+  const rows = parsed.data as any[];
+
   function normalizeDate(value: string) {
     if (!value) return "";
 
-    // already in DD/MM/YY
+    // already DD/MM/YY
     if (value.includes("/")) return value;
 
-    // sometimes CSV returns ISO date
     const date = new Date(value);
     if (!isNaN(date.getTime())) {
       const dd = String(date.getDate()).padStart(2, "0");
@@ -35,19 +43,6 @@ export async function getEventsFromSheet() {
 
     return value;
   }
-
-  const rows = text.split("\n").slice(1);
-
-  const events: TimelineEvent[] = rows
-    .map((row) => row.split(","))
-    .filter((cols) => cols[0])
-    .map((cols) => ({
-      title: cols[0]?.trim() || "",
-      date: normalizeDate(cols[1]?.trim() || ""),
-      description: cols[2]?.trim() || "",
-      location: cols[3]?.trim() || "",
-      image: cols[4]?.trim() || "",
-    }));
 
   function parseDate(dateStr: string) {
     const parts = dateStr.split("/");
@@ -60,8 +55,22 @@ export async function getEventsFromSheet() {
     return new Date(year, month, day);
   }
 
+  const events: TimelineEvent[] = rows
+    .filter((row) => row.title)
+    .map((row) => ({
+      title: row.title.trim(),
+      date: normalizeDate(row.date?.trim()),
+      description: row.description?.trim() || "",
+      location: row.location?.trim() || "",
+      image: row.image?.trim() || "",
+    }));
+
+  // newest → oldest
   events.sort((a, b) => {
-    return parseDate(b.date).getTime() - parseDate(a.date).getTime();
+    return (
+      parseDate(b.date).getTime() -
+      parseDate(a.date).getTime()
+    );
   });
 
   return events;
