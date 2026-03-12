@@ -5,7 +5,7 @@ export async function getEventsFromSheet() {
   const url = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?tqx=out:json&sheet=${SHEET_NAME}`;
 
   const res = await fetch(url, {
-    next: { revalidate: 60 }, // refresh cache every 60 seconds
+    next: { revalidate: 60 }, // refresh every 60 seconds
   });
 
   const text = await res.text();
@@ -22,7 +22,7 @@ export async function getEventsFromSheet() {
     text.substring(47, text.length - 2)
   );
 
-  const rows = json.table.rows;
+  const rows = json?.table?.rows || [];
 
   function parseDate(dateStr: string) {
     if (!dateStr) return new Date(0);
@@ -37,14 +37,17 @@ export async function getEventsFromSheet() {
     return new Date(year, month, day);
   }
 
-  const events: TimelineEvent[] = rows.map((row: any) => ({
-    title: row.c?.[0]?.v?.toString().trim() || "",
-    date: row.c?.[1]?.v?.toString().trim() || "",
-    description: row.c?.[2]?.v?.toString().trim() || "",
-    location: row.c?.[3]?.v?.toString().trim() || "",
-    image: row.c?.[4]?.v?.toString().trim() || "",
-  }));
+  const events: TimelineEvent[] = rows
+    .filter((row: any) => row?.c && row.c[0]?.v) // ignore empty rows
+    .map((row: any) => ({
+      title: row.c?.[0]?.v?.toString().trim() || "",
+      date: row.c?.[1]?.v?.toString().trim() || "",
+      description: row.c?.[2]?.v?.toString().trim() || "",
+      location: row.c?.[3]?.v?.toString().trim() || "",
+      image: row.c?.[4]?.v?.toString().trim() || "",
+    }));
 
+  // Sort newest → oldest
   events.sort((a, b) => {
     return (
       parseDate(b.date).getTime() -

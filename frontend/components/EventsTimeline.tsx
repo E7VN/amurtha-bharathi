@@ -1,7 +1,7 @@
 import { getEventsFromSheet } from "@/lib/googleSheets";
 import EventsTimelineClient from "./EventsTimelineClient";
 
-export const revalidate = 60; // refresh data every 60 seconds
+//export const revalidate = 60; // refresh data every 60 seconds
 
 type TimelineEvent = {
   title: string;
