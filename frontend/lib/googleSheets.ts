@@ -4,15 +4,18 @@ export async function getEventsFromSheet() {
 
   const url = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?tqx=out:json&sheet=${SHEET_NAME}`;
 
-  const res = await fetch(url);
+  const res = await fetch(url, {
+    next: { revalidate: 60 }, // refresh cache every 60 seconds
+  });
+
   const text = await res.text();
 
   type TimelineEvent = {
-  title: string;
-  date: string;
-  description: string;
-  location: string;
-  image: string;
+    title: string;
+    date: string;
+    description: string;
+    location: string;
+    image: string;
   };
 
   const json = JSON.parse(
@@ -22,17 +25,14 @@ export async function getEventsFromSheet() {
   const rows = json.table.rows;
 
   function parseDate(dateStr: string) {
-    // Expected: DD/MM/YY (27/8/25)
-
     if (!dateStr) return new Date(0);
 
     const parts = dateStr.split("/");
-
     if (parts.length !== 3) return new Date(0);
 
     const day = Number(parts[0]);
-    const month = Number(parts[1]) - 1; // JS months = 0 based
-    const year = Number("20" + parts[2]); // 25 → 2025
+    const month = Number(parts[1]) - 1;
+    const year = Number("20" + parts[2]);
 
     return new Date(year, month, day);
   }
@@ -45,8 +45,7 @@ export async function getEventsFromSheet() {
     image: row.c?.[4]?.v?.toString().trim() || "",
   }));
 
-  // Sort: Newest → Oldest
-  events.sort((a: TimelineEvent, b: TimelineEvent) => {
+  events.sort((a, b) => {
     return (
       parseDate(b.date).getTime() -
       parseDate(a.date).getTime()
