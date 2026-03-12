@@ -9,7 +9,7 @@ export async function POST(req: Request) {
   try {
     await resend.emails.send({
       from: "Website Contact <onboarding@resend.dev>", // temporary sender
-      to: "voice.amurthabharathi@gmail.com",
+      to: "prakash@umasfintax.com",
       subject: `New message from ${name}`,
       replyTo: email,
       text: `

@@ -86,7 +86,7 @@ export default function HomePage() {
                 Our Activities
               </Link>
               <Link
-                href="/about"
+                href="/events"
                 className="inline-flex items-center rounded-full border border-slate-200/70 px-5 py-2.5 text-sm font-medium text-slate-100 hover:bg-white/10"
               >
                 Our Events
