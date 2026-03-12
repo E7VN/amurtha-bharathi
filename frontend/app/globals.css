@@ -93,3 +93,10 @@ html[data-theme="dark"] body {
   color: #e5e7eb;
 }
 
+html[data-theme="light"] .hamburger-bar {
+  background-color: #f8fafc;
+}
+
+html[data-theme="dark"] .hamburger-bar {
+  background-color: #0f172a;
+}

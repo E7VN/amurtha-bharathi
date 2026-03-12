@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useState } from "react";
 import { ThemeToggle } from "@/components/ThemeToggle";
 import { BrandLogo } from "@/components/BrandLogo";
+import { useTheme } from "@/components/ThemeProvider";
 
 const navLinks = [
   { href: "/", label: "Home" },
@@ -15,6 +16,8 @@ const navLinks = [
 
 export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
+  const { theme } = useTheme();
+  const barColor = theme === "dark" ? "bg-white" : "bg-slate-900";
 
   return (
     <header className="site-header backdrop-blur">
@@ -45,18 +48,9 @@ export default function Navbar() {
             onClick={() => setMenuOpen(!menuOpen)}
             className="md:hidden flex flex-col justify-center items-center w-8 h-8 space-y-1"
           >
-            <span
-              className={`block h-0.5 w-6 bg-black dark:bg-white transition-transform duration-300
-              ${menuOpen ? "rotate-45 translate-y-1.5" : ""}`}
-            />
-            <span
-              className={`block h-0.5 w-6 bg-black dark:bg-white transition-opacity duration-300
-              ${menuOpen ? "opacity-0" : ""}`}
-            />
-            <span
-              className={`block h-0.5 w-6 bg-black dark:bg-white transition-transform duration-300
-              ${menuOpen ? "-rotate-45 -translate-y-1.5" : ""}`}
-            />
+            <span className={`block h-0.5 w-6 ${barColor} transition-transform duration-300 ${menuOpen ? "rotate-45 translate-y-1.5" : ""}`} />
+            <span className={`block h-0.5 w-6 ${barColor} transition-opacity duration-300 ${menuOpen ? "opacity-0" : ""}`} />
+            <span className={`block h-0.5 w-6 ${barColor} transition-transform duration-300 ${menuOpen ? "-rotate-45 -translate-y-1.5" : ""}`} />
           </button>
 
         </div>
@@ -69,7 +63,6 @@ export default function Navbar() {
         bg-slate-900/60 backdrop-blur-xl`}
       >
         <div className="flex flex-col items-center gap-5 py-5 text-white">
-
           {navLinks.map((link) => (
             <Link
               key={link.href}
@@ -80,7 +73,6 @@ export default function Navbar() {
               {link.label}
             </Link>
           ))}
-
         </div>
       </div>
 
