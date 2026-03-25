@@ -1,6 +1,9 @@
 @import url("https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;500;600;700&display=swap");
 @import "tailwindcss";
 
+/* makes dark: classes respond to data-theme="dark" on <html> */
+@custom-variant dark (&:where([data-theme="dark"], [data-theme="dark"] *));
+
 @theme {}
 
 @layer base {
@@ -51,36 +54,36 @@ html[data-theme="dark"] .card {
 }
 
 html[data-theme="light"] .text-muted-foreground {
-  color: #4b5563; /* slate-600 */
+  color: #4b5563;
 }
 
 html[data-theme="dark"] .text-muted-foreground {
-  color: #9ca3af; /* slate-400 */
+  color: #9ca3af;
 }
 
 /* Header + footer surfaces */
 html[data-theme="light"] .site-header {
   background-color: #ffffff;
-  border-bottom: 1px solid #e5e7eb; /* slate-200 */
-  color: #0f172a; /* slate-900 */
+  border-bottom: 1px solid #e5e7eb;
+  color: #0f172a;
 }
 
 html[data-theme="dark"] .site-header {
-  background-color: #020617; /* near black */
-  border-bottom: 1px solid #1f2937; /* slate-800 */
+  background-color: #020617;
+  border-bottom: 1px solid #1f2937;
   color: #e5e7eb;
 }
 
 html[data-theme="light"] .site-footer {
   background-color: #ffffff;
   border-top: 1px solid #e5e7eb;
-  color: #6b7280; /* slate-500 */
+  color: #6b7280;
 }
 
 html[data-theme="dark"] .site-footer {
   background-color: #020617;
   border-top: 1px solid #1f2937;
-  color: #9ca3af; /* slate-400 */
+  color: #9ca3af;
 }
 
 html[data-theme="light"] body {
@@ -99,4 +102,17 @@ html[data-theme="light"] .hamburger-bar {
 
 html[data-theme="dark"] .hamburger-bar {
   background-color: #0f172a;
+}
+
+/* leader cards */
+html[data-theme="light"] .leader-card {
+  background-color: #ffffff;
+  border-color: #e5e7eb;
+  color: #020617;
+}
+
+html[data-theme="dark"] .leader-card {
+  background-color: #0f172a;
+  border-color: #1f2937;
+  color: #e5e7eb;
 }

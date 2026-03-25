@@ -34,10 +34,10 @@ export default function LeadershipPage() {
         {leaders.map((leader) => (
           <div
             key={leader.name}
-            className="card rounded-2xl border p-4 shadow-lg backdrop-blur-sm"
+            className="card rounded-2xl border p-4 shadow-lg backdrop-blur-sm flex flex-col items-center text-center"
           >
             {/* Circular image wrapper */}
-            <div className="relative w-40 h-40 mb-4 rounded-full overflow-hidden">
+            <div className="relative w-40 h-40 mb-4 rounded-full overflow-hidden mx-auto">
               <Image
                 src={leader.image}
                 alt={leader.name}

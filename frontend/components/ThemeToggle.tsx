@@ -2,7 +2,7 @@
 "use client";
 
 import { useTheme } from "@/components/ThemeProvider";
-import { FaMoon } from "react-icons/fa";
+import { FaMoon, FaSun } from "react-icons/fa";
 
 export function ThemeToggle() {
   const { theme, toggleTheme } = useTheme();
@@ -20,7 +20,11 @@ export function ThemeToggle() {
             : "border-slate-300 bg-white text-slate-800 hover:bg-slate-100"
         }`}
     >
-      <FaMoon className="h-3.5 w-3.5" />
+      {isDark ? (
+        <FaSun className="h-3.5 w-3.5" />
+      ) : (
+        <FaMoon className="h-3.5 w-3.5" />
+      )}
       <span>{isDark ? "Light mode" : "Dark mode"}</span>
     </button>
   );
