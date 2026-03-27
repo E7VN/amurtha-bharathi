@@ -9,7 +9,7 @@ export function BrandLogo() {
   const { theme } = useTheme();
   const isDark = theme === "dark";
 
-  const src = isDark ? "/logo-dark.png" : "/logo-light.png";
+  const src = isDark ? "/logoblue4.png" : "/logo-light.png";
   const alt = "Amurtha Bharathi Foundation logo";
 
   return (
